@@ -1,2 +1,116 @@
-<html><head><title>MyPage</title></head><body><h1>MY PAGE</h1></body></html>
+<html><head><title>MyPage</title></head><body><h1>MY PAGE</h1>
+<script type="text/javascript">
+	var browserDetector = (function() {
+    var userAgent = navigator.userAgent;
+
+    /*if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) { //test for Firefox/x.x or Firefox x.x (ignoring remaining digits);
+        var ffversion = new Number(RegExp.$1) // capture x.x portion and store as a number
+        if (ffversion >= 35)
+            document.write("You're using FF 35 or above")
+        else if (ffversion >= 5)
+            document.write("You're using FF 5.x or above")
+        else if (ffversion >= 4)
+            document.write("You're using FF 4.x or above")
+        else if (ffversion >= 3)
+            document.write("You're using FF 3.x or above")
+        else if (ffversion >= 2)
+            document.write("You're using FF 2.x")
+        else if (ffversion >= 1)
+            document.write("You're using FF 1.x")
+    }
+
+    if (navigator.userAgent.indexOf('MSIE') != -1)
+        var detectIEregexp = /MSIE (\d+\.\d+);/ //test for MSIE x.x
+    else // if no "MSIE" string in userAgent
+        var detectIEregexp = /Trident.*rv[ :]*(\d+\.\d+)/ //test for rv:x.x or rv x.x where Trident string exists
+
+    if (detectIEregexp.test(navigator.userAgent)) { //if some form of IE
+        var ieversion = new Number(RegExp.$1) // capture x.x portion and store as a number
+        if (ieversion >= 12)
+            document.write("You're using IE12 or above")
+        else if (ieversion >= 11)
+            document.write("You're using IE11 or above")
+        else if (ieversion >= 10)
+            document.write("You're using IE10 or above")
+        else if (ieversion >= 9)
+            document.write("You're using IE9 or above")
+        else if (ieversion >= 8)
+            document.write("You're using IE8 or above")
+        else if (ieversion >= 7)
+            document.write("You're using IE7.x")
+        else if (ieversion >= 6)
+            document.write("You're using IE6.x")
+        else if (ieversion >= 5)
+            document.write("You're using IE5.x")
+    }
+
+    if (/Opera[\/\s](\d+\.\d+)/.test(navigator.userAgent)) { //test for Opera/x.x or Opera x.x (ignoring remaining decimal places);
+        var oprversion = new Number(RegExp.$1) // capture x.x portion and store as a number
+        if (oprversion >= 10)
+            document.write("You're using Opera 10.x or above")
+        else if (oprversion >= 9)
+            document.write("You're using Opera 9.x")
+        else if (oprversion >= 8)
+            document.write("You're using Opera 8.x")
+        else if (oprversion >= 7)
+            document.write("You're using Opera 7.x")
+        else
+            document.write("n/a")
+    } else
+        document.write("n/a")*/
+
+    var appVersion = navigator.appVersion;
+    var Agent = navigator.userAgent;
+    var browserName = navigator.appName;
+    var fullVersion = '' + parseFloat(navigator.appVersion);
+    var majorVersion = parseInt(navigator.appVersion, 10);
+    var offsetName, offsetVersion, ix;
+    // In Chrome 
+    if ((offsetVersion = Agent.indexOf("Chrome")) != -1) {
+        browserName = "Chrome";
+        fullVersion = Agent.substring(offsetVersion + 7);
+    }
+    // In Microsoft internet explorer 
+    else if ((offsetVersion = Agent.indexOf("MSIE")) != -1) {
+        browserName = "Microsoft Internet Explorer";
+        fullVersion = Agent.substring(offsetVersion + 5);
+    }
+    // In Firefox 
+    else if ((offsetVersion = Agent.indexOf("Firefox")) != -1) {
+        browserName = "Firefox";
+    }
+    // In Safari 
+    else if ((offsetVersion = Agent.indexOf("Safari")) != -1) {
+        browserName = "Safari";
+        fullVersion = Agent.substring(offsetVersion + 7);
+        if ((offsetVersion = Agent.indexOf("Version")) != -1) fullVersion = Agent.substring(offsetVersion + 8);
+    }
+    // For other browser "name/version" is at the end of userAgent 
+    else if ((offsetName = Agent.lastIndexOf(' ') + 1) < (offsetVersion = Agent.lastIndexOf('/'))) {
+        browserName = Agent.substring(offsetName, offsetVersion);
+        fullVersion = Agent.substring(offsetVersion + 1);
+        if (browserName.toLowerCase() == browserName.toUpperCase()) {
+            browserName = navigator.appName;
+        }
+    }
+    // trimming the fullVersion string at semicolon/space if present 
+    if ((ix = fullVersion.indexOf(";")) != -1) fullVersion = fullVersion.substring(0, ix);
+    if ((ix = fullVersion.indexOf(" ")) != -1) fullVersion = fullVersion.substring(0, ix);
+    majorVersion = parseInt('' + fullVersion, 10);
+    if (isNaN(majorVersion)) {
+        fullVersion = '' + parseFloat(navigator.appVersion);
+        majorVersion = parseInt(navigator.appVersion, 10);
+    }
+    document.write('' + 'Browser name = ' + browserName + '<br>' + 'Full version = ' + fullVersion + '<br>' + 'Major version = ' + majorVersion + '<br>' + 'navigator.appName = ' + navigator.appName + '<br>' + 'navigator.userAgent = ' + navigator.userAgent + '<br>')
+    var browserV = {
+    	name: browserName,
+    	ver: majorVersion,
+    	version: fullVersion,
+    	userAgent: Agent
+    }
+    return browserV;
+})();
+
+</script>
+</body></html>
 
